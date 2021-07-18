@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Book",
+        "price": 12.49,
+        "basicTaxExempt": true,
+        "domestic": false,
+        "stock": 3 
+    },
+    {
+        "id": 2,
+        "name": "Music CD",
+        "price": 14.99,
+        "basicTaxExempt": false,
+        "domestic": false,
+        "stock": 4 
+    },
+    {
+        "id": 3,
+        "name": "Chocolate Bar",
+        "price": 0.85,
+        "basicTaxExempt": true,
+        "domestic": false,
+        "stock": 6 
+    }
+]
