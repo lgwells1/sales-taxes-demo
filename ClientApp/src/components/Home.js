@@ -100,7 +100,7 @@ export class Home extends Component {
             <h1>Welcome to Kwik-E-Mart</h1>
           </div>
           <div className="column">
-            <button className="button is-info is-pulled-right"
+            <button className="button is-primary is-pulled-right"
               onClick={e => {
                 this.showCart(e);
               }}>
