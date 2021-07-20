@@ -46,7 +46,7 @@ namespace sales_taxes_demo.Controllers
             return receipt;
         }
 
-        private double calculateTax(bool basicTaxExempt, bool domestic, double preTaxPrice)
+        public double calculateTax(bool basicTaxExempt, bool domestic, double preTaxPrice)
         {
             double totalTaxes;
             const double importTaxRate = 0.05;
