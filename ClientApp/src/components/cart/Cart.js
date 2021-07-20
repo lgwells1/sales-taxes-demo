@@ -7,16 +7,15 @@ const Cart = props => {
   const cartKeys = Object.keys(cart || {});
 
 
-  const onClose = e => {
-    props.onClose && props.onClose(e);
-  };
+  // const onClose = e => {
+  //   props.onClose && props.onClose(e);
+  // };
 
   useEffect(() => {
-    
     getTotal(cart);
   });
 
-   const getTotal = (shoppingCart) => {
+   const getTotal = () => {
     let total = 0;
     for (var key in cart) {
         total += parseFloat((cart[key].amount * cart[key].product.price).toFixed(2));
@@ -61,7 +60,7 @@ const Cart = props => {
                 </button>{" "}
                 <button
                   className="button is-success"
-                  onClick={props.checkout}
+                  onClick={props.showReceipt}
                 >
                   Checkout
                 </button>

@@ -4,21 +4,85 @@
         "name": "Book",
         "price": 12.49,
         "basicTaxExempt": true,
-        "domestic": false,
+        "domestic": true,
         "stock": 3 
     },
     {
         "id": 2,
+        "name": "Imported Book",
+        "price": 12.49,
+        "basicTaxExempt": true,
+        "domestic": false,
+        "stock": 3 
+    },
+    {
+        "id": 3,
         "name": "Music CD",
+        "price": 14.99,
+        "basicTaxExempt": false,
+        "domestic": true,
+        "stock": 4 
+    },
+    {
+        "id": 4,
+        "name": "Imported Music CD",
         "price": 14.99,
         "basicTaxExempt": false,
         "domestic": false,
         "stock": 4 
     },
     {
-        "id": 3,
+        "id": 5,
         "name": "Chocolate Bar",
         "price": 0.85,
+        "basicTaxExempt": true,
+        "domestic": true,
+        "stock": 6 
+    },
+    {
+        "id": 6,
+        "name": "Imported Box of Chocolate",
+        "price": 10.00,
+        "basicTaxExempt": true,
+        "domestic": false,
+        "stock": 6 
+    },
+    {
+        "id": 7,
+        "name": "Bottle Of Perfume",
+        "price": 18.99,
+        "basicTaxExempt": false,
+        "domestic": true,
+        "stock": 6 
+    },
+    {
+        "id": 8,
+        "name": "Fancy Imported Bottle Of Perfume",
+        "price": 47.5,
+        "basicTaxExempt": false,
+        "domestic": false,
+        "stock": 6 
+    },
+    {
+        "id": 9,
+        "name": "Packet of Headache Pills",
+        "price": 9.75,
+        "basicTaxExempt": true,
+        "domestic": true,
+        "stock": 6 
+    },   
+    {
+        "id": 10,
+        "name": "Generic Imported Bottle Of Perfume",
+        "price": 27.99,
+        "basicTaxExempt": false,
+        "domestic": false,
+        "stock": 6 
+    },
+    {
+        "id": 11,
+        "name": "Fancy Imported Box of Chocolate",
+        "price": 11.25,
         "basicTaxExempt": true,
         "domestic": false,
         "stock": 6 

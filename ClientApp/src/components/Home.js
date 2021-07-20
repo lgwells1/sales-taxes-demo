@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import ProductList from './products/ProductList';
-import Cart from './Cart'
+import Cart from './cart/Cart'
+import Checkout from './cart/Checkout';
 
 export class Home extends Component {
   static displayName = Home.name;
 
   constructor(props) {
     super(props);
-    this.state = { 
-      products: [], 
+    this.state = {
+      products: [],
       cart: {},
       cartVisible: false,
-      loading: true };
+      loading: true,
+      receiptVisible: false
+    };
   }
 
   componentDidMount() {
@@ -19,7 +22,7 @@ export class Home extends Component {
   }
 
   showCart = event => {
-    this.setState( { cartVisible: !this.state.cartVisible });
+    this.setState({ cartVisible: !this.state.cartVisible, receiptVisible: false });
   };
 
   addToCart = item => {
@@ -32,8 +35,6 @@ export class Home extends Component {
       //Add item to cart
       cart[item.id] = item;
     }
-    console.log("ADDING TO CART");
-    console.log(cart);
     this.setState({ cart });
   };
 
@@ -50,42 +51,84 @@ export class Home extends Component {
     this.setState({ cart });
   };
 
+  showReceipt = event => {
+    this.setState({ cartVisible: false, receiptVisible: true });
+  }
+
+  calculateReceipt = async () => {
+    var carItems = [];
+
+    for (var key in this.state.cart) {
+      var item = {
+        id: this.state.cart[key].product.id,
+        quantity: this.state.cart[key].amount
+      }
+      carItems.push(item);
+    }
+
+    const requestOptions = {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(carItems)
+    };
+
+    const fetchedReceipt = await fetch('receipt', requestOptions)
+      .then(function (response) {
+        return response.json();
+      });
+
+    return fetchedReceipt;
+  }
+
   async getProducts() {
     const response = await fetch('product');
 
     const data = await response.json();
     this.setState({ products: data, loading: false });
-    console.log(data);
   }
 
   render() {
     let contents = this.state.loading
-    ? <p><em>Loading...</em></p>
-    : <ProductList 
+      ? <p><em>Loading...</em></p>
+      : <ProductList
         products={this.state.products}
-        addToCart={this.addToCart}/>
+        addToCart={this.addToCart} />
     return (
       <div>
-        <h1>Welcome to Kwik-E-Mart</h1>
-        <div>
-          { contents }
+        <div className="columns">
+          <div className="title column is-half">
+            <h1>Welcome to Kwik-E-Mart</h1>
+          </div>
+          <div className="column">
+            <button className="button is-info is-pulled-right"
+              onClick={e => {
+                this.showCart(e);
+              }}>
+              Cart
+            </button>
+          </div>
         </div>
         <div>
-          <button
-            onClick={e => {
-              this.showCart(e);
-            }}>
-          Cart
-          </button>
+          <div>
+            <Cart
+              emptyCart={this.emptyCart}
+              removeFromCart={this.removeFromCart}
+              cart={this.state.cart}
+              onClose={this.showCart}
+              show={this.state.cartVisible}
+              showReceipt={this.showReceipt}
+            />
+          </div>
+          <div>
+            <Checkout
+              calculateReceipt={this.calculateReceipt}
+              show={this.state.receiptVisible}
+              cart={this.state.cart}
+            />
+          </div>
         </div>
         <div>
-          <Cart
-          emptyCart={this.emptyCart}
-          removeFromCart={this.removeFromCart}
-          cart={this.state.cart}
-          onClose={this.showCart}
-          show={this.state.cartVisible} 
-          />
+          {contents}
         </div>
       </div>
     );

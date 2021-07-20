@@ -1,6 +1,6 @@
 using System;
 
-namespace sales_taxes_backend
+namespace sales_taxes_demo
 {
     public class Product {
         public int id { get; set; }
