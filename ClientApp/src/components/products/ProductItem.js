@@ -17,10 +17,11 @@ const ProductItem = props => {
               </figure>
             </div>
             <div className="media-content">
-              <b style={{ textTransform: "capitalize" }}>
+              <b style={{ textTransform: "capitalize" }} className="mr-1">
                 {product.name}{" "}
                 <span className="tag is-primary">${product.price}</span>
               </b>
+              <br/>
               {product.stock > 0 ? (
                 <small>{product.stock + " Available"}</small>
               ) : (
