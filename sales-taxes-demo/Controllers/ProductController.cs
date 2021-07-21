@@ -12,7 +12,6 @@ namespace sales_taxes_demo.Controllers
 
         [HttpGet]
         public List<Product> Get() {
-            
             //Use func in utility class to fetch products
             return ProductUtility.fetchProducts();
         }
