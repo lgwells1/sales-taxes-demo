@@ -11,6 +11,7 @@ export class Home extends Component {
     this.state = {
       products: [],
       cart: {},
+      cartItemCount: 0,
       cartVisible: false,
       loading: true,
       receiptVisible: false
@@ -27,6 +28,7 @@ export class Home extends Component {
 
   addToCart = item => {
     let cart = this.state.cart;
+    let cartItemCount = ++this.state.cartItemCount;
     if (cart[item.id]) {
       //Item exists already, increment quantity
       cart[item.id].amount += item.amount;
@@ -35,20 +37,22 @@ export class Home extends Component {
       //Add item to cart
       cart[item.id] = item;
     }
-    this.setState({ cart });
+    this.setState({ cart, cartItemCount});
   };
 
   removeFromCart = itemId => {
     let cart = this.state.cart;
+    let cartItemCount = this.state.cartItemCount - cart[itemId].amount;
 
     delete cart[itemId];
 
-    this.setState({ cart });
+    this.setState({ cart, cartItemCount });
   };
 
   emptyCart = () => {
     let cart = {};
-    this.setState({ cart });
+    let cartItemCount = 0;
+    this.setState({ cart , cartItemCount});
   };
 
   showReceipt = event => {
@@ -104,7 +108,7 @@ export class Home extends Component {
               onClick={e => {
                 this.showCart(e);
               }}>
-              Cart
+              Cart ({this.state.cartItemCount})
             </button>
           </div>
         </div>
