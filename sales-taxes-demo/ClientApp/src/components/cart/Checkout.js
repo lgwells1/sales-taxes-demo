@@ -52,6 +52,7 @@ const Checkout = props => {
                         </div>
                     </div>
                 </div>
+                <br/>
             </>
     );
 };
